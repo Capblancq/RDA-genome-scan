@@ -38,8 +38,7 @@ geno <- geno[,maf]
 ## Launching the RDA
 
 ```{r, message=FALSE}
-RDA <- rda(geno ~ env$envir1 + env$envir2 + env$envir3 + env$envir4 + env$envir5 + 
-             env$envir6 + env$envir7 + env$envir8 + env$envir9 + env$envir10,  env)
+RDA <- rda(geno ~ env$envir1 + env$envir2 + env$envir3 + env$envir4 + env$envir5 + env$envir6 + env$envir7 + env$envir8 + env$envir9 + env$envir10,  env)
 ```
 
 ## Post treatment of RDA results
@@ -66,10 +65,8 @@ rdadapt<-function(rda,K)
 ```{r, echo=TRUE, fig.align="center", fig.width=4.5, fig.height=4.5}
 
 ggplot() +
-  geom_line(aes(x=c(1:length(RDA$CCA$eig)), y=as.vector(RDA$CCA$eig)), linetype="dotted", 
-            size = 1.5, color="darkgrey") +
-  geom_point(aes(x=c(1:length(RDA$CCA$eig)), y=as.vector(RDA$CCA$eig)), size = 3, 
-             color="darkgrey") +
+  geom_line(aes(x=c(1:length(RDA$CCA$eig)), y=as.vector(RDA$CCA$eig)), linetype="dotted", size = 1.5, color="darkgrey") +
+  geom_point(aes(x=c(1:length(RDA$CCA$eig)), y=as.vector(RDA$CCA$eig)), size = 3, color="darkgrey") +
   scale_x_discrete(name = "Ordination axes", limits=c(1:9)) +
   ylab("Inertia") +
   theme_bw()
@@ -87,11 +84,8 @@ res_rdadapt<-rdadapt(RDA, 5)
 ```
 ```{r, echo=TRUE, fig.align="center", fig.width=4.5, fig.height=4.5}
 ggplot() +
-  geom_point(aes(x=c(1:length(res_rdadapt[,1])), y=-log10(res_rdadapt[,1])), 
-             col = "gray83") +
-    geom_point(aes(x=c(1:length(res_rdadapt[,1]))[which(res_rdadapt[,2] < 0.1)], 
-                   y=-log10(res_rdadapt[which(res_rdadapt[,2] < 0.1),1])), 
-               col = "orange") +
+  geom_point(aes(x=c(1:length(res_rdadapt[,1])), y=-log10(res_rdadapt[,1])), col = "gray83") +
+  geom_point(aes(x=c(1:length(res_rdadapt[,1]))[which(res_rdadapt[,2] < 0.1)], y=-log10(res_rdadapt[which(res_rdadapt[,2] < 0.1),1])), col = "orange") +
   xlab("SNPs") + ylab("-log10(p.values)") +
   theme_bw()
 ```
@@ -108,13 +102,9 @@ which(res_rdadapt[,2] < 0.1)
 ```{r, echo=TRUE, fig.align="center", fig.width=4.5, fig.height=4.5}
 ggplot() +
   geom_point(aes(x=RDA$CCA$v[,1], y=RDA$CCA$v[,2]), col = "gray86") +
-  geom_point(aes(x=RDA$CCA$v[which(res_rdadapt[,2] < 0.1),1], 
-                 y=RDA$CCA$v[which(res_rdadapt[,2] < 0.1),2]), col = "orange") +
-  geom_segment(aes(xend=RDA$CCA$biplot[,1]/10, yend=RDA$CCA$biplot[,2]/10, x=0, y=0), 
-               colour="black", size=0.5, linetype=1, 
-               arrow=arrow(length = unit(0.02, "npc"))) +
-  geom_text(aes(x=1.2*RDA$CCA$biplot[,1]/10, y=1.2*RDA$CCA$biplot[,2]/10, 
-                label = colnames(env[,2:11]))) +
+  geom_point(aes(x=RDA$CCA$v[which(res_rdadapt[,2] < 0.1),1], y=RDA$CCA$v[which(res_rdadapt[,2] < 0.1),2]), col = "orange") +
+  geom_segment(aes(xend=RDA$CCA$biplot[,1]/10, yend=RDA$CCA$biplot[,2]/10, x=0, y=0), colour="black", size=0.5, linetype=1, arrow=arrow(length = unit(0.02, "npc"))) +
+  geom_text(aes(x=1.2*RDA$CCA$biplot[,1]/10, y=1.2*RDA$CCA$biplot[,2]/10, label = colnames(env[,2:11]))) +
   xlab("RDA 1") + ylab("RDA 2") +
   theme_bw() +
   theme(legend.position="none")
