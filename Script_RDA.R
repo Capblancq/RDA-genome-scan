@@ -340,7 +340,7 @@ table<-data.frame(Longitude=env_pop$Longitude, Latitude=env_pop$Latitude, apply(
 p1 <- ggplot() + 
   geom_raster(aes(x=fond[,1],y=fond[,2],fill=as.factor(fond[,3]))) + 
   scale_fill_manual(values="#FFEDA0") +
-  geom_point(data=table, aes(x= table$Longitude, y=table$Latitude, colour = env_pop$MAP), size=3) + 
+  geom_point(data=table, aes(x= table$Longitude, y=table$Latitude, colour = RDA1), size=3) + 
   scale_color_gradient(low="black", high = "white") +
   geom_point(aes(x= c(-122.33, -122.667, -149.886), y=c(47.60, 45.525, 61.2120)), size=1) +
   geom_text(aes(x= c(-130.33, -130.667, -157.886), y=c(47.60, 45.525, 61.2120), label=c("Vancouver", "Portland", "Anchorage")), size=3.5) +
