@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ##
-## Library loading 
+## Libraries 
 
 ```{r, message=FALSE}
 library("vegan")
@@ -19,7 +19,7 @@ library("qvalue")
 library("ggplot2")
 ```
 
-## Genetic dataset and environmental variables loadings
+## Genetic dataset and environmental variables
 
 ```{r, message=FALSE}
 geno<-read.csv("sim1.csv")[,-c(1:14)]
@@ -35,7 +35,7 @@ maf <- which(frequencies > MAF & frequencies < (1-MAF))
 geno <- geno[,maf]
 ```
 
-## Launching the RDA
+## Running the RDA
 
 ```{r, message=FALSE}
 RDA <- rda(geno ~ env$envir1 + env$envir2 + env$envir3 + env$envir4 + env$envir5 + env$envir6 + env$envir7 + env$envir8 + env$envir9 + env$envir10,  env)
