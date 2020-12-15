@@ -30,8 +30,8 @@ env<-read.csv("sim1.csv")[,c(1:14)]
 
 ```{r, message=FALSE}
 MAF <- 0.05
-frequences <- colSums(geno)/(2*nrow(geno))
-maf <- which(frequences > MAF & frequences < (1-MAF))
+frequencies <- colSums(geno)/(2*nrow(geno))
+maf <- which(frequencies > MAF & frequencies < (1-MAF))
 geno <- geno[,maf]
 ```
 
